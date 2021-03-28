@@ -1,0 +1,38 @@
+<div class="hf-column palette mat-elevation-z10">
+  <div class="hf-row palette-header" *ngIf="header">
+    <button mat-button [matMenuTriggerFor]="select">
+      <fa-icon icon="palette" size="lg" style="padding: 5px 10px 0px 0px;"></fa-icon>
+      <span *ngIf="module === modules.MODULE_ALICE" class="palette-title">ACP</span>
+      <span *ngIf="module === modules.MODULE_STANDARD" class="palette-title">SCP</span>
+      <span *ngIf="module === modules.MODULE_MINIMAL" class="palette-title">MCP</span>
+    </button>
+  </div>
+
+  <div class="hf-m15" [ngSwitch]="module">
+    <section *ngSwitchCase="modules.MODULE_ALICE">
+      <lib-alice-color-palette></lib-alice-color-palette>
+    </section>
+    <section *ngSwitchCase="modules.MODULE_STANDARD">
+      <lib-standard-color-palette></lib-standard-color-palette>
+    </section>
+    <section *ngSwitchCase="modules.MODULE_MINIMAL">
+      <lib-minimal-color-palette></lib-minimal-color-palette>
+    </section>
+  </div>
+</div>
+
+<mat-menu #select>
+  <mat-radio-group [(ngModel)]="module">
+    <mat-radio-button class="select-radio" [value]="modules.MODULE_ALICE">
+      Alice Color Palette
+    </mat-radio-button>
+    <mat-radio-button class="select-radio" [value]="modules.MODULE_STANDARD">
+      Standard Color Palette
+    </mat-radio-button>
+    <mat-radio-button class="select-radio" [value]="modules.MODULE_MINIMAL">
+      Minimal Color Palette
+    </mat-radio-button>
+  </mat-radio-group>
+</mat-menu>
+
+

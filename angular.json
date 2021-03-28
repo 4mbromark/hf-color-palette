@@ -42,6 +42,123 @@
           }
         }
       }
+    },
+    "hf-test": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/hf-test",
+      "sourceRoot": "projects/hf-test/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/hf-test",
+            "index": "projects/hf-test/src/index.html",
+            "main": "projects/hf-test/src/main.ts",
+            "polyfills": "projects/hf-test/src/polyfills.ts",
+            "tsConfig": "projects/hf-test/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/hf-test/src/favicon.ico",
+              "projects/hf-test/src/assets"
+            ],
+            "styles": [
+              "projects/hf-test/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/hf-test/src/environments/environment.ts",
+                  "with": "projects/hf-test/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "hf-test:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "hf-test:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "hf-test:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/hf-test/src/test.ts",
+            "polyfills": "projects/hf-test/src/polyfills.ts",
+            "tsConfig": "projects/hf-test/tsconfig.spec.json",
+            "karmaConfig": "projects/hf-test/karma.conf.js",
+            "assets": [
+              "projects/hf-test/src/favicon.ico",
+              "projects/hf-test/src/assets"
+            ],
+            "styles": [
+              "projects/hf-test/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/hf-test/tsconfig.app.json",
+              "projects/hf-test/tsconfig.spec.json",
+              "projects/hf-test/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/hf-test/e2e/protractor.conf.js",
+            "devServerTarget": "hf-test:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "hf-test:serve:production"
+            }
+          }
+        }
+      }
     }},
   "defaultProject": "hf-color-palette"
 }

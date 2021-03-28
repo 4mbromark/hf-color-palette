@@ -1,0 +1,18 @@
+@import 'https://4mbromark.github.io/hf-axdevtool/styles/highfive-basestyle.css';
+
+.palette {
+  max-width: min-content;
+}
+.palette-header {
+  color: white;
+  background-color: var(--hf-color);
+  padding: 5px;
+}
+.palette-title {
+  font-family: var(--hf-main-ffamily);
+  font-size: 25px;
+}
+
+.select-radio {
+  margin: 5px 15px;
+}

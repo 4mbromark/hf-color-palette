@@ -1,0 +1,16 @@
+{
+  "color": {
+    "red": "Red",
+    "green": "Green",
+    "blue": "Blue",
+
+    "cyan": "Cyan",
+    "magenta": "Magenta",
+    "yellow": "Yellow",
+    "key": "Key",
+
+    "hue": "Hue",
+    "saturation": "Satur.",
+    "lightness": "Light."
+  }
+}

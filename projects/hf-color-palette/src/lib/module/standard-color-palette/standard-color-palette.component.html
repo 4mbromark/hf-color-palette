@@ -1,0 +1,18 @@
+<div *ngFor="let l of ls1" class="hf-row">
+  <div *ngFor="let s of ss" class="hf-row">
+    <div *ngFor="let h of hs1" class="hf-row">
+      <button class="grid-button" [style]="'background-color: hsl(' + h + ',' + s + '%,' + l + '%);'">
+        <!--<fa-icon icon="check" size="sm"></fa-icon>-->
+      </button>
+    </div>
+  </div>
+</div>
+<div *ngFor="let l of ls2" class="hf-row">
+  <div *ngFor="let s of ss" class="hf-row">
+    <div *ngFor="let h of hs2" class="hf-row">
+      <button class="grid-button" [style]="'background-color: hsl(' + h + ',' + s + '%,' + l + '%);'">
+        <!--<fa-icon icon="check" size="sm"></fa-icon>-->
+      </button>
+    </div>
+  </div>
+</div>
