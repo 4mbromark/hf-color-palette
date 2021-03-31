@@ -1,7 +1,7 @@
 import { ModuleTag } from './color/ModuleTag';
 // tslint:disable: component-selector
+// tslint:disable: no-output-on-prefix
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { EventEmitter } from '@angular/core';
 
 @Component({
@@ -13,19 +13,21 @@ export class HfColorPaletteComponent implements OnInit {
   @Input() header = true;
   @Input() module = ModuleTag.MODULE_ALICE;
 
-  @Input() set colorInput(color: string) {
-    this.color = color;
-  }
-  @Output() colorOutput: EventEmitter<string> = new EventEmitter<string>();
+  @Input() color: string;
+  @Output() colorChange: EventEmitter<string> = new EventEmitter<string>();
 
-  color: string;
+  @Output() onColorChange: EventEmitter<string> = new EventEmitter<string>();
 
   modules = ModuleTag;
 
-  constructor(
-    private translate: TranslateService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
+  }
+
+  setColor(event: Event): void {
+    this.color = event as unknown as string;
+    this.colorChange.emit(this.color);
+    this.onColorChange.emit(this.color);
   }
 }

@@ -1,1 +1,7 @@
-<hf-color-palette module="alice" header="false"></hf-color-palette>
+<div class="mat-elevation-z10"  [style]="'background-color: '+ color +';'">
+  <hf-color-palette module="alice" [header]="true" [(color)]="color" (onColorChange)="set();"></hf-color-palette>
+  <div class="hf-row">
+    <hf-color-palette module="standard" [header]="true" [(color)]="color" (onColorChange)="set();"></hf-color-palette>
+    <hf-color-palette module="minimal" [header]="true" [(color)]="color" (onColorChange)="set();"></hf-color-palette>
+  </div>
+</div>

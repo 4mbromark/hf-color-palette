@@ -1,10 +1,6 @@
 {
   "name": "hf-color-palette",
-  "version": "0.0.1",
-  "dependencies": {
-    "@angular/material": "^11.2.6",
-    "tslib": "^2.0.0"
-  },
+  "version": "0.1.2",
   "peerDependencies": {
     "@angular/animations": "^10.0.0",
     "@angular/cdk": "^10.0.0",
@@ -18,33 +14,10 @@
     "@fortawesome/angular-fontawesome": "^0.7.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@ngx-translate/core": "^13.0.0",
-    "@ngx-translate/http-loader": "^6.0.0",
     "ng-packagr": "^10.0.0",
     "rxjs": "~6.5.4",
     "stylus": "^0.54.8",
     "typescript": "^3.9.7",
     "zone.js": "~0.10.2"
-  },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "^0.1002.0",
-    "@angular-devkit/build-ng-packagr": "^0.1002.0",
-    "@angular/cli": "^10.0.0",
-    "@angular/compiler-cli": "^10.0.0",
-    "@types/jasmine": "~3.5.0",
-    "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^12.19.3",
-    "codelyzer": "^6.0.1",
-    "jasmine-core": "~3.5.0",
-    "jasmine-spec-reporter": "~4.2.1",
-    "karma": "^6.3.1",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage-istanbul-reporter": "~2.1.0",
-    "karma-jasmine": "~2.0.1",
-    "karma-jasmine-html-reporter": "^1.4.2",
-    "protractor": "^7.0.0",
-    "ts-node": "~8.3.0",
-    "tslint": "~5.18.0",
-    "typescript": "^3.9.7"
   }
 }

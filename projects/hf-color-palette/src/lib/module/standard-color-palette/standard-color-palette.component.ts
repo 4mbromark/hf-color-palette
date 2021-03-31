@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'lib-standard-color-palette',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./standard-color-palette.component.css']
 })
 export class StandardColorPaletteComponent implements OnInit {
+  @Input() color: string;
+  @Output() colorChange: EventEmitter<string> = new EventEmitter<string>();
 
   hs1 = [];
   hs2 = [];
@@ -29,5 +31,19 @@ export class StandardColorPaletteComponent implements OnInit {
     for (let i = 30; i < 100; i += 18) {
       this.ls2.unshift(i);
     }
+  }
+
+  getGridButtonColor(h: number, s: number, l: number): string {
+    return `hsl(${h}, ${s}%, ${l}%)`;
+  }
+
+  setColor(h: number, s: number, l: number): void {
+    const color = this.getGridButtonColor(h, s, l);
+    this.color = color;
+    this.colorChange.emit(color);
+  }
+
+  isGridButtonChecked(h: number, s: number, l: number): boolean {
+    return this.getGridButtonColor(h, s, l) === this.color;
   }
 }

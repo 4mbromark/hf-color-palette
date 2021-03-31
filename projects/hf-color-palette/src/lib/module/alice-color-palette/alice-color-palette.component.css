@@ -9,7 +9,8 @@
   height: 25px; /** 25 */
   width: 25px; /** 25 */
   margin: 1px;
-  border: 0px;
+  border: none;
+  outline: none;
   cursor: pointer;
 }
 .combo-button {
@@ -17,11 +18,28 @@
   border: 0px;
   margin: 1px;
   cursor: pointer;
+  border: 1px solid lightgrey;
 }
+.grid-button:hover, .combo-button:hover {
+  box-shadow: 0px 0px 10px black;
+}
+
 
 .letter {
   font-family: var(--hf-main-ffamily);
+  font-size: large;
   margin-bottom: 3px;
+}
+
+.selector-input {
+  width: 25px;
+  margin: 3px;
+  text-align: center;
+}
+.selector-circle {
+  cursor: pointer;
+  border: 1px solid lightgrey;
+  border-radius: 50%;
 }
 
 .mat-button-toggle-group {

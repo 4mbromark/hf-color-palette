@@ -1,8 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HfColorPaletteComponent } from './hf-color-palette.component';
 
 import {MatButtonModule} from '@angular/material/button';
@@ -34,15 +31,6 @@ import { MinimalColorPaletteComponent } from './module/minimal-color-palette/min
     BrowserModule,
     BrowserAnimationsModule,
 
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      },
-      defaultLanguage: 'en'
-    }),
-
     FormsModule,
     ReactiveFormsModule,
 
@@ -58,16 +46,10 @@ import { MinimalColorPaletteComponent } from './module/minimal-color-palette/min
   ],
   exports: [HfColorPaletteComponent]
 })
-export class HfColorPaletteModule {
+export class HighFiveColorPaletteModule {
   constructor(
     private library: FaIconLibrary,
-    private translate: TranslateService
   ) {
     library.addIconPacks(fas);
-    translate.setDefaultLang('en');
   }
-}
-
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
 }

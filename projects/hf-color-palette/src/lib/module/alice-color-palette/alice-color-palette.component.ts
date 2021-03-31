@@ -1,7 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
-import { TranslateService } from '@ngx-translate/core';
 import { ColorConfig } from '../../color/ColorConfig';
 import { ColorTag } from '../../color/ColorTag';
 import { ColorSelector } from '../../slider/ColorSelector';
@@ -13,12 +12,8 @@ import { ColorSlider } from '../../slider/ColorSlider';
   styleUrls: ['./alice-color-palette.component.css']
 })
 export class AliceColorPaletteComponent implements OnInit {
-  @Input() set colorInput(color: string) {
-    this.color = color;
-  }
-  @Output() colorOutput: EventEmitter<string> = new EventEmitter<string>();
-
-  color: string;
+  @Input() color: string;
+  @Output() colorChange: EventEmitter<string> = new EventEmitter<string>();
 
   ct = ColorTag;
 
@@ -29,12 +24,13 @@ export class AliceColorPaletteComponent implements OnInit {
   sliders: ColorSlider[] = ColorSelector.COLOR_SLIDERS_RGB;
   professional = false;
 
-  constructor(
-    private translate: TranslateService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.setType(ColorTag.PALETTE_RGB);
+    const success = this.manageColorInput();
+    if (!success) {
+      this.setType(ColorTag.PALETTE_RGB);
+    }
   }
 
   setType(type: ColorTag): void {
@@ -66,6 +62,28 @@ export class AliceColorPaletteComponent implements OnInit {
     this.setType(this.type);
   }
 
+  private manageColorInput(): boolean {
+    try {
+      let parts = this.color.split(/\(/g);
+      switch (parts[0]) {
+        case ColorTag.PALETTE_RGB: {
+          this.setType(ColorTag.PALETTE_RGB);
+          break;
+        }
+        case ColorTag.PALETTE_HSL: {
+          this.setType(ColorTag.PALETTE_HSL);
+          break;
+        }
+      }
+      parts = parts[1].replace(/\)/g, '').replace(/%/g, '').replace(/;/g, '').split(',');
+      this.setColorOnSliders(parts[0] as unknown as number, parts[1] as unknown as number, parts[2] as unknown as number);
+      this.setProfessional();
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
   getGridButtonColor(v1: number, v2: number, v3: number): string {
     switch (this.type) {
       case ColorTag.PALETTE_RGB: {
@@ -78,16 +96,23 @@ export class AliceColorPaletteComponent implements OnInit {
   }
 
   actionGrid(v1: number, v2: number, v3: number): void {
-    this.sliders[0].value = v1;
-    this.sliders[1].value = v2;
-    this.sliders[2].value = v3;
+    this.setColorOnSliders(v1, v2, v3);
     if (!this.professional) {
       this.setColor();
     }
   }
 
+  setColorOnSliders(v1: number, v2: number, v3: number): void {
+    this.sliders[0].value = v1;
+    this.sliders[1].value = v2;
+    this.sliders[2].value = v3;
+  }
+
   getColorRange(color: ColorTag): number[] {
     const slider = this.sliders.find(s => s.color === color);
+    if (!slider) {
+      return;
+    }
     if (slider.check) {
       return [slider.value];
     } else if (this.type === ColorTag.PALETTE_HSL && slider.color !== ColorTag.PALETTE_HUE) {
@@ -127,6 +152,11 @@ export class AliceColorPaletteComponent implements OnInit {
 
   setColor(): void {
     const color = this.getColorStringByValues();
-    this.colorOutput.emit(color);
+    this.color = color;
+    this.colorChange.emit(color);
+  }
+
+  isGridButtonChecked(v1: number, v2: number, v3: number): boolean {
+    return this.getGridButtonColor(v1, v2, v3) === this.color;
   }
 }

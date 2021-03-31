@@ -21,7 +21,7 @@
           appearance="legacy">
           <mat-button-toggle *ngFor="let slider of sliders" [value]="slider.color" (click)="checkSlider(slider);"
             style="padding: 0px !important;" ngDefaultControl>
-            {{ slider.title | translate }}
+            {{ slider.title }}
           </mat-button-toggle>
         </mat-button-toggle-group>
       </div>
@@ -32,8 +32,10 @@
         <div *ngFor="let r of getColorRange(ct.PALETTE_RED)" [class]="sliders[0].check ? 'hf-column' : 'hf-row'">
           <div *ngFor="let g of getColorRange(ct.PALETTE_GREEN)" class="hf-row">
             <div *ngFor="let b of getColorRange(ct.PALETTE_BLUE)" class="hf-row">
-              <button class="grid-button" (click)="actionGrid(r, g, b);"
-                [style]="'background-color: ' + getGridButtonColor(r, g, b) + ';'"></button>
+              <button class="grid-button" (click)="actionGrid(r, g, b);" (dblclick)="setColor();"
+                [style.background-color]="getGridButtonColor(r, g, b)">
+                <fa-icon *ngIf="isGridButtonChecked(r, g, b)" icon="check" style="color: white;"></fa-icon>
+              </button>
             </div>
           </div>
         </div>
@@ -42,8 +44,10 @@
         <div *ngFor="let h of getColorRange(ct.PALETTE_HUE)" [class]="sliders[0].check ? 'hf-column' : 'hf-row'">
           <div *ngFor="let s of getColorRange(ct.PALETTE_SATURATION)" class="hf-row">
             <div *ngFor="let l of getColorRange(ct.PALETTE_LIGHTNESS)" class="hf-row">
-              <button class="grid-button" (click)="actionGrid(h, s, l);"
-                [style]="'background-color: ' + getGridButtonColor(h, s, l) + ';'"></button>
+              <button class="grid-button" (click)="actionGrid(h, s, l);" (dblclick)="setColor();"
+                [style.background-color]="getGridButtonColor(h, s, l)">
+                <fa-icon *ngIf="isGridButtonChecked(h, s, l)" icon="check" style="color: white;"></fa-icon>
+              </button>
             </div>
           </div>
         </div>
@@ -56,21 +60,21 @@
     <div class="hf-h100 hf-row" style="margin-top: 3px; margin-bottom: 5px">
       <div *ngFor="let slider of sliders">
         <div *ngIf="professional || !professional && slider.check" class="hf-h100 hf-flex-center hf-column">
-          <span class="hf-noselect letter" style="font-size: large;" [matTooltip]="slider.title | translate"
-            matTooltipPosition="below">{{slider.letter}}</span>
-          <input mat-input *ngIf="professional" [(ngModel)]="slider.value"
-            style="width: 25px; margin: 3px; text-align: center;">
+          <span class="hf-noselect letter" [matTooltip]="slider.title" matTooltipPosition="below">{{
+            slider.letter }}</span>
+          <input mat-input class="selector-input" *ngIf="professional" [(ngModel)]="slider.value">
           <mat-slider class="hf-h100" [invert]="true" [min]="slider.min" [max]="slider.max" [(ngModel)]="slider.value"
             [vertical]="true" [step]="slider.step ? slider.step : 15" [thumbLabel]="true"
             (input)="onSliderChange($event, slider)">
           </mat-slider>
-          <fa-icon *ngIf="professional" [icon]="slider.check ? 'check-circle' : 'circle'" size="lg"
-            [style]="'color: ' + getColorBySlider(slider) + '; cursor: pointer;'" (click)="checkSlider(slider);"></fa-icon>
+          <fa-icon *ngIf="professional" class="selector-circle" [icon]="slider.check ? 'check-circle' : 'circle'"
+            size="lg" [style]="'color: ' + getColorBySlider(slider)" (click)="checkSlider(slider);"></fa-icon>
         </div>
       </div>
     </div>
 
-    <button class="hf-w100 hf-noradius combo-button" *ngIf="professional"
-      [style]="'background-color: ' + getColorStringByValues()"></button>
+    <button class="hf-w100 hf-noradius combo-button" *ngIf="professional" (click)="setColor();"
+      [style.background-color]="getColorStringByValues()">
+    </button>
   </div>
 </div>

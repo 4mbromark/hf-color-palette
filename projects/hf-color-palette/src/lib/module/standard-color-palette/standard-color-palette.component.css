@@ -1,6 +1,11 @@
 .grid-button {
-  height: 25px;
-  width: 25px;
+  height: 28px;
+  width: 28px;
   margin: 1px;
-  border: 0px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.grid-button:hover {
+  box-shadow: 0px 0px 10px black;
 }

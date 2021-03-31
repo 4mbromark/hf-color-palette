@@ -1,1 +1,5 @@
-<p>minimal-color-palette works!</p>
+<div class="hf-row" *ngFor="let colorGroup of colors" icon="circle">
+  <button class="circle" *ngFor="let color of colorGroup" (click)="setColor(color);" [style.background-color]="color">
+    <fa-icon *ngIf="isGridButtonChecked(color);" icon="circle" size="lg" style="color: white;"></fa-icon>
+  </button>
+</div>

@@ -1,5 +1,5 @@
-<div class="hf-column palette mat-elevation-z10">
-  <div class="hf-row palette-header" *ngIf="header">
+<div class="hf-column palette">
+  <div class="hf-row palette-header" *ngIf="header === true">
     <button mat-button [matMenuTriggerFor]="select">
       <fa-icon icon="palette" size="lg" style="padding: 5px 10px 0px 0px;"></fa-icon>
       <span *ngIf="module === modules.MODULE_ALICE" class="palette-title">ACP</span>
@@ -10,13 +10,13 @@
 
   <div class="hf-m15" [ngSwitch]="module">
     <section *ngSwitchCase="modules.MODULE_ALICE">
-      <lib-alice-color-palette></lib-alice-color-palette>
+      <lib-alice-color-palette [color]="color" (colorChange)="setColor($event);"></lib-alice-color-palette>
     </section>
     <section *ngSwitchCase="modules.MODULE_STANDARD">
-      <lib-standard-color-palette></lib-standard-color-palette>
+      <lib-standard-color-palette [color]="color" (colorChange)="setColor($event);"></lib-standard-color-palette>
     </section>
     <section *ngSwitchCase="modules.MODULE_MINIMAL">
-      <lib-minimal-color-palette></lib-minimal-color-palette>
+      <lib-minimal-color-palette [color]="color" (colorChange)="setColor($event);"></lib-minimal-color-palette>
     </section>
   </div>
 </div>

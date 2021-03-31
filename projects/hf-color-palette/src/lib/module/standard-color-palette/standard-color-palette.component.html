@@ -1,8 +1,8 @@
 <div *ngFor="let l of ls1" class="hf-row">
   <div *ngFor="let s of ss" class="hf-row">
     <div *ngFor="let h of hs1" class="hf-row">
-      <button class="grid-button" [style]="'background-color: hsl(' + h + ',' + s + '%,' + l + '%);'">
-        <!--<fa-icon icon="check" size="sm"></fa-icon>-->
+      <button class="grid-button" (click)="setColor(h, s, l);" [style.background-color]="getGridButtonColor(h, s, l)">
+        <fa-icon *ngIf="isGridButtonChecked(h, s, l)" icon="check" style="color: white;"></fa-icon>
       </button>
     </div>
   </div>
@@ -10,8 +10,8 @@
 <div *ngFor="let l of ls2" class="hf-row">
   <div *ngFor="let s of ss" class="hf-row">
     <div *ngFor="let h of hs2" class="hf-row">
-      <button class="grid-button" [style]="'background-color: hsl(' + h + ',' + s + '%,' + l + '%);'">
-        <!--<fa-icon icon="check" size="sm"></fa-icon>-->
+      <button class="grid-button" (click)="setColor(h, s, l);" [style.background-color]="getGridButtonColor(h, s, l)">
+        <fa-icon *ngIf="isGridButtonChecked(h, s, l)" icon="check" style="color: white;"></fa-icon>
       </button>
     </div>
   </div>

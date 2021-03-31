@@ -1,4 +1,4 @@
-import { HfColorPaletteModule } from './../../../hf-color-palette/src/lib/hf-color-palette.module';
+import { HighFiveColorPaletteModule } from './../../../hf-color-palette/src/lib/hf-color-palette.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -15,7 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     CommonModule,
     HttpClientModule,
-    HfColorPaletteModule
+    HighFiveColorPaletteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

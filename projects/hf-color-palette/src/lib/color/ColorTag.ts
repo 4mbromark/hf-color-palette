@@ -1,20 +1,20 @@
 export enum ColorTag {
-  PALETTE_RGB,
-  PALETTE_CMYK,
-  PALETTE_HSL,
+  PALETTE_RGB = 'rgb',
+  PALETTE_CMYK = 'cmyk',
+  PALETTE_HSL = 'hsl',
 
-  PALETTE_GENERAL,
+  PALETTE_GENERAL = 'general',
 
-  PALETTE_RED,
-  PALETTE_GREEN,
-  PALETTE_BLUE,
+  PALETTE_RED = 'palette-red',
+  PALETTE_GREEN = 'palette-green',
+  PALETTE_BLUE = 'palette-blue',
 
-  PALETTE_CYAN,
-  PALETTE_MAGENTA,
-  PALETTE_YELLOW,
-  PALETTE_KEY,
+  PALETTE_CYAN = 'palette-cyan',
+  PALETTE_MAGENTA = 'palette-magenta',
+  PALETTE_YELLOW = 'palette-yellow',
+  PALETTE_KEY = 'palette-key',
 
-  PALETTE_HUE,
-  PALETTE_SATURATION,
-  PALETTE_LIGHTNESS,
+  PALETTE_HUE = 'palette-red',
+  PALETTE_SATURATION = 'palette-saturation',
+  PALETTE_LIGHTNESS = 'palette-lightness',
 }

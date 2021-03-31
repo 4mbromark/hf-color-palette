@@ -1,0 +1,12 @@
+.circle {
+  cursor: pointer;
+  margin: 4px;
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+}
+.circle:hover {
+  box-shadow: 0px 0px 10px gray;
+}
